@@ -70,7 +70,7 @@ I am passionate about:
 
 ## 🌍 Live Demo
 
-(Will update after deployment)
+(https://lakshmiraj-portfolio-gudlalakshmirajs-projects.vercel.app)
 
 ---
 
