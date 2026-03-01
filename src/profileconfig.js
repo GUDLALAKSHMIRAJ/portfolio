@@ -14,7 +14,7 @@ export const skills = [
     "Backend Brilliance Builder",
 ];
 
-export const resume = "./Resume.pdf"; 
+export const resume = "/Resume.pdf"; 
 
 
 

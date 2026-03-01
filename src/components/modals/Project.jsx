@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import githubLogo from "../../assets/github.svg";
-import siteLogo from "../../assets/internet.svg";
 import cross from "../../assets/cross.svg";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import { Autoplay, Pagination, FreeMode ,Navigation} from 'swiper/modules';
@@ -30,9 +29,6 @@ const Project = ({proj,index}) => {
                       className="w-10 h-10 my-auto"
                     />
                   </a>
-                  <a href={proj.liveLink} className="my-auto hover:cursor">
-                    <img src={siteLogo} className="w-10 h-10" alt="logo" />
-                  </a>
                 </div>
               </div>
               <p className="italic mb-2">{proj.briefDesc}</p>
@@ -44,11 +40,11 @@ const Project = ({proj,index}) => {
               </ul>
               <h3 className="font-bold">Technologies:</h3>
               <p className="mb-2 flex justify-between items-center">
-                <span>{proj.tech.join(", ")}</span>{" "}
+                <span>{proj.tech.join(", ")}</span>
                 <span>
                   <button
                     onClick={() => setPreview(true)}
-                    className="bg-black text-white  px-4 py-2 rounded-md hover:bg-slate-700 transition-all duration-200"
+                    className="bg-black text-white px-4 py-2 rounded-md hover:bg-slate-700 transition-all duration-200"
                   >
                     Preview
                   </button>
@@ -63,25 +59,42 @@ const Project = ({proj,index}) => {
                   onClick={() => setPreview(false)}
                 />
                 <h2 className='font-semibold'>{proj.name} Preview</h2>
-                <Swiper
-      slidesPerView={1}
-      spaceBetween={25}
-     
-      loop={true}
-      freeMode={true}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      modules={[FreeMode, Autoplay]}
-      className="w-full "
-    >
-        {proj.previewImages.map((img, idx) => (
-            <SwiperSlide className="h-auto w-full" key={idx}>
-            <img src={img} className='w-fit' alt="preview"/>
-            </SwiperSlide>
-        ))}
-    </Swiper>
+                {proj.previewPdf ? (
+                  <div className="w-full h-[80vh]">
+                    {/*
+                      To use this, place your project PDFs in `public/assets/` and set
+                      `previewPdf: '/assets/your-file.pdf'` in `src/components/constants/project.jsx`.
+                    */}
+                    <iframe
+                      src={proj.previewPdf}
+                      title={`${proj.name} PDF Preview`}
+                      className="w-full h-full"
+                    />
+                  </div>
+                ) : proj.previewImages && proj.previewImages.length > 0 ? (
+                  <Swiper
+                    slidesPerView={1}
+                    spaceBetween={25}
+                    loop={true}
+                    freeMode={true}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    modules={[FreeMode, Autoplay]}
+                    className="w-full "
+                  >
+                    {proj.previewImages.map((img, idx) => (
+                      <SwiperSlide className="h-auto w-full" key={idx}>
+                        <img src={img} className="w-fit" alt="preview" />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                ) : (
+                  <div className="w-full h-48 flex items-center justify-center text-gray-500">
+                    No preview available
+                  </div>
+                )}
                 
           </div>
             </div>
