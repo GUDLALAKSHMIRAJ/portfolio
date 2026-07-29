@@ -6,7 +6,7 @@ const Education = ({ isDarkMode }) => {
       institution: "Parul University, Vadodara",
       duration: "2022-2026",
       degree: "Bachelor of Technology - Computer Engineering (Artificial Intelligence)",
-      cgpa: "CGPA: 6.82",
+      cgpa: "CGPA: 7.01",
     },
 {
       institution: "Narayana Jr & Sr College, Visakhapatnam",
